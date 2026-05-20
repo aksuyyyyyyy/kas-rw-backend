@@ -32,7 +32,7 @@ def get_db():
 class TransaksiBase(BaseModel):
     tanggal: date
     keterangan: str
-    jenis: str
+    jenis: str  # pemasukan / pengeluaran
     jumlah: float
 
 
@@ -45,7 +45,9 @@ class TransaksiUpdate(BaseModel):
 
 @app.get("/")
 def root():
-    return {"message": "Kas RW API berjalan"}
+    return {
+        "message": "Kas RW API berjalan"
+    }
 
 
 @app.get("/transaksi")
@@ -120,8 +122,8 @@ def create(data: TransaksiBase):
     db.close()
 
     return {
-        "message": "Transaction created successfully",
-        "id": new_id
+        "id": new_id,
+        "message": "Transaksi berhasil ditambahkan"
     }
 
 
