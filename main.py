@@ -1,4 +1,4 @@
-from fastAPI import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from typing import Optional
@@ -9,7 +9,7 @@ from typing import Optional
 
 import mysql.connector
 from dotenv import load_dotenv
-from fastAPI import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 
