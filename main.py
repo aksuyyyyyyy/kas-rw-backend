@@ -32,7 +32,7 @@ def get_db():
 class TransaksiBase(BaseModel):
     tanggal: date
     keterangan: str
-    jenis: str  # 'pemasukan' atau 'pengeluaran'
+    jenis: str
     jumlah: float
 
 
@@ -51,6 +51,7 @@ def root():
 @app.get("/transaksi")
 def get_all():
     db = get_db()
+
     cursor = db.cursor(dictionary=True)
 
     cursor.execute(
@@ -67,6 +68,7 @@ def get_all():
 @app.get("/transaksi/{id}")
 def get_one(id: int):
     db = get_db()
+
     cursor = db.cursor(dictionary=True)
 
     cursor.execute(
@@ -90,6 +92,7 @@ def get_one(id: int):
 @app.post("/transaksi", status_code=201)
 def create(data: TransaksiBase):
     db = get_db()
+
     cursor = db.cursor()
 
     cursor.execute(
@@ -117,14 +120,15 @@ def create(data: TransaksiBase):
     db.close()
 
     return {
-        "id": new_id,
-        "message": "Transaksi berhasil ditambahkan"
+        "message": "Transaction created successfully",
+        "id": new_id
     }
 
 
 @app.put("/transaksi/{id}")
 def update(id: int, data: TransaksiUpdate):
     db = get_db()
+
     cursor = db.cursor(dictionary=True)
 
     cursor.execute(
@@ -182,6 +186,7 @@ def update(id: int, data: TransaksiUpdate):
 @app.delete("/transaksi/{id}")
 def delete(id: int):
     db = get_db()
+
     cursor = db.cursor()
 
     cursor.execute(
